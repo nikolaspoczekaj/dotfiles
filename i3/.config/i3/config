@@ -8,6 +8,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 exec --no-startup-id ~/.screenlayout/standard.sh
+exec --no-startup-id ~/.config/i3/pulseaudio-control
 bindsym $mod+Mod1+e exec i3-msg exit
 bindsym $mod+Mod1+x exec poweroff
 bindsym $mod+Mod1+y exec reboot
@@ -22,7 +23,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 floating_modifier $mod
 
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec xterm
 
 bindsym $mod+q kill
 
@@ -84,9 +85,7 @@ set $ws10 "10"
 
 
 assign [class="KeePassXC"] $ws1
-assign [class="Gnome-terminal"] $ws10
 exec --no-startup-id i3-msg "workspace $ws1; exec keepassxc"
-exec --no-startup-id i3-msg "workspace $ws10; exec gnome-terminal"
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2

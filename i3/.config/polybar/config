@@ -35,7 +35,7 @@ foreground = ${colors.foreground}
 line-size = 3pt
 
 
-border-size = 4pt
+border-size = 2pt
 
 border-color = #00000000
 
@@ -53,12 +53,12 @@ separator = |
 separator-foreground = ${colors.disabled}
 
 
-font-0 = monospace;2
+font-0 = FiraCode Nerd Font:size=12;2
 
 
 modules-left = xworkspaces 
 
-modules-right = filesystem pulseaudio memory cpu date
+modules-right = filesystem pulseaudio-control-output pulseaudio-control-input memory cpu date
 
 
 cursor-click = pointer
@@ -77,6 +77,40 @@ enable-ipc = true
 
 
 ; override-redirect = true
+
+
+[module/pulseaudio-control-output]
+type = custom/script
+tail = true
+format-underline = ${colors.cyan}
+label-padding = 2
+label-foreground = ${colors.foreground}
+
+# Icons mixed from Font Awesome 5 and Material Icons
+# You can copy-paste your options for each possible action, which is more
+# trouble-free but repetitive, or apply only the relevant ones (for example
+# --node-blacklist is only needed for next-node).
+exec = pulseaudio-control --icons-volume " , " --icon-muted " " --node-nicknames-from "device.description" --node-nickname "alsa_output.pci-0000_09_00.4.analog-stereo:Speakers" --node-nickname "alsa_output.usb-SHARKOON_SGH30_Sharkoon_SKILLER_SGH30-00.analog-stereo:Headphones" listen
+click-right = exec pavucontrol &
+click-left = pulseaudio-control togmute
+click-middle = pulseaudio-control --node-blacklist "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" next-node
+scroll-up = pulseaudio-control --volume-max 130 up
+scroll-down = pulseaudio-control --volume-max 130 down
+
+[module/pulseaudio-control-input]
+type = custom/script
+tail = true
+format-underline = ${colors.cyan}
+label-padding = 2
+label-foreground = ${colors.foreground}
+
+# Use --node-blacklist to remove the unwanted PulseAudio .monitor that are child of sinks
+exec = pulseaudio-control  --node-type input --icons-volume "" --icon-muted "" --node-nickname "alsa_output.pci-0000_0c_00.3.analog-stereo:  Webcam" --node-nickname "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo:  Headphones" --node-blacklist "*.monitor" listen
+click-right = exec pavucontrol &
+click-left = pulseaudio-control --node-type input togmute
+click-middle = pulseaudio-control --node-type input next-node
+scroll-up = pulseaudio-control --node-type input --volume-max 130 up
+scroll-down = pulseaudio-control --node-type input --volume-max 130 down
 
 
 [module/systray]
@@ -122,11 +156,6 @@ label-empty-foreground = ${colors.disabled}
 label-empty-padding = 1
 
 
-[module/xwindow]
-
-type = internal/xwindow
-
-label = %title:0:60:...%
 
 
 [module/filesystem]
@@ -167,25 +196,7 @@ label-muted = muted
 label-muted-foreground = ${colors.disabled}
 
 
-[module/xkeyboard]
 
-type = internal/xkeyboard
-
-blacklist-0 = num lock
-
-
-label-layout = %layout%
-
-label-layout-foreground = ${colors.primary}
-
-
-label-indicator-padding = 2
-
-label-indicator-margin = 1
-
-label-indicator-foreground = ${colors.background}
-
-label-indicator-background = ${colors.secondary}
 
 
 [module/memory]
