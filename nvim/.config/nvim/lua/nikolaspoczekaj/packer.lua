@@ -6,6 +6,8 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
+	use 'neovim/nvim-lspconfig'
+	use 'jmcantrell/vim-virtualenv'
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.8',
 		-- or                        , branch = '0.1.x',

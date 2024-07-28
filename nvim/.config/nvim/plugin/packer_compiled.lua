@@ -153,6 +153,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/niko/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vim-virtualenv"] = {
+    loaded = true,
+    path = "/home/niko/.local/share/nvim/site/pack/packer/start/vim-virtualenv",
+    url = "https://github.com/jmcantrell/vim-virtualenv"
   }
 }
 
