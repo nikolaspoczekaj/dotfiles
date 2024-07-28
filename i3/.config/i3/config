@@ -84,8 +84,6 @@ set $ws9 "9"
 set $ws10 "10"
 
 
-assign [class="KeePassXC"] $ws1
-exec --no-startup-id i3-msg "workspace $ws1; exec keepassxc"
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
