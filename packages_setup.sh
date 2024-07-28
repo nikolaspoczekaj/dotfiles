@@ -8,6 +8,7 @@ sudo apt install golang-go -y
 sudo apt install stow -y
 sudo apt install pavucontrol -y
 sudo apt install keepassxc -y
+sudo apt install pulseaudio -y
 mkdir ~/repos
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
 ~/repos/nerdfonts/install.sh FiraCode
