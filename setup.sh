@@ -4,7 +4,6 @@ sudo apt install build-essential -y
 sudo apt install python3 python3-dev libgtk-3-dev libgl1-mesa-dev libglu1-mesa-dev -y
 sudo apt install npm -y
 sudo npm install node -y
-sudo apt install golang-go -y
 sudo apt install stow -y
 sudo apt install pavucontrol -y
 sudo apt install keepassxc -y
@@ -21,3 +20,21 @@ stow i3
 sudo apt install i3 picom polybar -y
 cp ./i3/.config/i3/pulseaudio-control /bin/pulseaudio-control 
 stow startup-scripts
+
+#go Installation
+GO_VERSION="1.22.5"
+GO_TARBALL="go${GO_VERSION}.linux-amd64.tar.gz"
+GO_URL="https://go.dev/dl/${GO_TARBALL}"
+INSTALL_DIR="/usr/local"
+DOWNLOADS_DIR="$HOME/Downloads"
+PROFILE_FILE="$HOME/.profile"
+sudo apt remove -y golang-go
+sudo apt purge -y golang-go
+sudo rm -rf ${INSTALL_DIR}/go
+mkdir -p ${DOWNLOADS_DIR}
+wget -P ${DOWNLOADS_DIR} ${GO_URL}
+sudo tar -C ${INSTALL_DIR} -xzf ${DOWNLOADS_DIR}/${GO_TARBALL}
+rm ${DOWNLOADS_DIR}/${GO_TARBALL}
+if ! grep -q "export PATH=\$PATH:${INSTALL_DIR}/go/bin" ${PROFILE_FILE}; then
+    sudo echo "export PATH=\$PATH:${INSTALL_DIR}/go/bin" >> ${PROFILE_FILE}
+fi

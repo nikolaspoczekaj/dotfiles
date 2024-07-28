@@ -27,7 +27,7 @@ bindsym $mod+Return exec xterm
 
 bindsym $mod+q kill
 
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+e exec --no-startup-id dmenu_run
 
 bindsym $mod+s layout stacking
 bindsym $mod+h focus left
@@ -58,7 +58,7 @@ bindsym $mod+z split h
 # split in vertical orientation
 bindsym $mod+v split v
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+d layout toggle split
 bindsym $mod+f fullscreen toggle 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
