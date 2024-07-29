@@ -14,7 +14,7 @@ git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update -y
 stow nvim 
-sudo apt install neovim 
+sudo apt install neovim -y
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 stow i3
 sudo apt install i3 picom polybar -y
