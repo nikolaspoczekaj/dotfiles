@@ -5,6 +5,7 @@ sudo apt install python3 python3-dev python3.10-venv libgtk-3-dev libgl1-mesa-de
 sudo apt install npm -y
 sudo npm install node -y
 sudo apt install stow -y
+sudo apt install xclip -y
 sudo apt install pavucontrol -y
 sudo apt install keepassxc -y
 sudo apt install pulseaudio -y
