@@ -9,6 +9,7 @@ sudo apt install xclip -y
 sudo apt install pavucontrol -y
 sudo apt install keepassxc -y
 sudo apt install pulseaudio -y
+sudo apt install xterm -y
 mkdir ~/repos
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
 ~/repos/nerdfonts/install.sh FiraCode
@@ -19,7 +20,7 @@ sudo apt install neovim -y
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 stow i3
 sudo apt install i3 picom polybar -y
-cp ./i3/.config/i3/pulseaudio-control /bin/pulseaudio-control 
+sudo cp ./i3/.config/i3/pulseaudio-control /bin/pulseaudio-control 
 stow startup-scripts
 
 #go Installation
