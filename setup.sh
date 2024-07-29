@@ -1,7 +1,7 @@
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install build-essential -y
-sudo apt install python3 python3-dev libgtk-3-dev libgl1-mesa-dev libglu1-mesa-dev -y
+sudo apt install python3 python3-dev python3.10-venv libgtk-3-dev libgl1-mesa-dev libglu1-mesa-dev -y
 sudo apt install npm -y
 sudo npm install node -y
 sudo apt install stow -y
