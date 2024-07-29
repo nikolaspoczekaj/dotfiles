@@ -15,7 +15,7 @@ sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update -y
 stow nvim 
 sudo apt install neovim -y
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 stow i3
 sudo apt install i3 picom polybar -y
 cp ./i3/.config/i3/pulseaudio-control /bin/pulseaudio-control 
