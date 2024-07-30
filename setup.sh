@@ -47,6 +47,7 @@ git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
 stow tmux
 stow bin
 stow xterm
+stow themes
 
 #neovim
 sudo add-apt-repository ppa:neovim-ppa/unstable -y

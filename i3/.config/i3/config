@@ -9,6 +9,8 @@ exec --no-startup-id nm-applet
 
 exec --no-startup-id ~/.screenlayout/standard.sh
 exec --no-startup-id ~/.config/i3/pulseaudio-control
+exec --no-startup-id feh --bg-scale ~/.themes/i3_wallpaper.jpg
+
 bindsym $mod+Mod1+e exec i3-msg exit
 bindsym $mod+Mod1+x exec poweroff
 bindsym $mod+Mod1+y exec reboot
