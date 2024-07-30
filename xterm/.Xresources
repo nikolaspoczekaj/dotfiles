@@ -1,23 +1,18 @@
 XTerm*selectToClipboard: true
 
-! Schriftart und Größe
-XTerm*faceName: FiraCode Nerd Font
+XTerm*faceName: Hack Nerd Font
 XTerm*faceSize: 14
 
-! Hintergrund- und Vordergrundfarben
 XTerm*background: #1e1e1e
 XTerm*foreground: #dcdcdc
 XTerm*cursorColor: #ffcc00
 XTerm*highlightColor: #3b3b3b
 
-! Scrollbar Einstellungen
 XTerm*scrollBar: true
 XTerm*rightScrollBar: true
 
 XTerm*cursorBlink: true
 
-! Farben für ANSI-Escape-Codes
-! Farben für ANSI-Escape-Codes
 XTerm*color0: #1e1e1e
 XTerm*color1: #d16969
 XTerm*color2: #608b4e

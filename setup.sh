@@ -14,7 +14,7 @@ sudo apt install pulseaudio -y
 stow xterm
 mkdir ~/repos
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
-~/repos/nerdfonts/install.sh FiraCode
+~/repos/nerdfonts/install.sh Hack
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update -y
 stow nvim 
