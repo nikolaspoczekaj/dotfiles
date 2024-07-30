@@ -1,3 +1,4 @@
+#packages
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install build-essential -y
@@ -9,27 +10,8 @@ sudo apt install xterm xclip -y
 sudo apt install pavucontrol -y
 sudo apt install keepassxc -y
 sudo apt install pulseaudio -y
-
-
-stow xterm
-mkdir ~/repos
-git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
-~/repos/nerdfonts/install.sh Hack
-sudo add-apt-repository ppa:neovim-ppa/unstable -y
-sudo apt update -y
-stow nvim 
-sudo apt install neovim -y
-git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-stow i3
-sudo apt install i3 picom polybar -y
-sudo cp ./i3/.config/i3/pulseaudio-control /bin/pulseaudio-control 
-stow startup-scripts
-
-#lazygit Installation
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-tar xf lazygit.tar.gz lazygit
-sudo install lazygit /usr/local/bin
+sudo apt install tmux -y
+sudo apt install gio -y
 
 #go Installation
 GO_VERSION="1.22.5"
@@ -48,3 +30,46 @@ rm ${DOWNLOADS_DIR}/${GO_TARBALL}
 if ! grep -q "export PATH=\$PATH:${INSTALL_DIR}/go/bin" ${PROFILE_FILE}; then
     sudo echo "export PATH=\$PATH:${INSTALL_DIR}/go/bin" >> ${PROFILE_FILE}
 fi
+
+#lazygit Installation
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+
+#nerdfonts
+mkdir ~/repos
+git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
+~/repos/nerdfonts/install.sh Hack
+
+
+#stow dotfiles
+stow tmux
+stow bin
+stow xterm
+
+#neovim
+sudo add-apt-repository ppa:neovim-ppa/unstable -y
+sudo apt update -y
+stow nvim 
+sudo apt install neovim -y
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+#i3
+stow i3
+sudo apt install i3 picom polybar -y
+sudo cp ./i3/.config/i3/pulseaudio-control /bin/pulseaudio-control 
+
+#autostart und .bashrc
+if ! grep -q mp_hidive_mount "${PROFILE_FILE}";  then
+	echo ". ~/.local/scripts/mp_hidrive_mount" >> ${PROFILE_FILE}
+fi
+
+if ! grep -q ssh-agent ~/.bashrc;  then
+	echo 'eval "$(ssh-agent -s)"' >> "${PROFILE_FILE}"
+	echo 'ssh-add ~/.ssh/id_ed25519' >> "${PROFILE_FILE}"
+	echo 'ssh-add ~/.ssh/devops_mtn' >> "${PROFILE_FILE}"
+	echo 'clear' >> "${PROFILE_FILE}"
+fi
+
+
