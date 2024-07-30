@@ -75,10 +75,10 @@ if ! grep -q mp_hidive_mount "${PROFILE_FILE}";  then
 fi
 
 if ! grep -q ssh-agent ~/.bashrc;  then
-	echo 'eval "$(ssh-agent -s)"' >> "${PROFILE_FILE}"
+	echo 'eval "$(ssh-agent -s)"' >> "~/.bashrc"
 #	echo 'ssh-add ~/.ssh/id_ed25519' >> "${PROFILE_FILE}"
 #	echo 'ssh-add ~/.ssh/devops_mtn' >> "${PROFILE_FILE}"
-	echo 'clear' >> "${PROFILE_FILE}"
+	echo 'clear' >> "~/.bashrc"
 fi
 
 
