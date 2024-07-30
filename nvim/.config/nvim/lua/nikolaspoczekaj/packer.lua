@@ -50,6 +50,15 @@ return require('packer').startup(function(use)
             "nvim-lua/plenary.nvim"
         },
     })
+	use {
+    'nvim-tree/nvim-tree.lua',
+    requires = { 'nvim-tree/nvim-web-devicons' }, -- optional, für Icons
+    config = function()
+      require('nvim-tree').setup {
+        -- Deine Konfiguration hier
+      }
+		end
+	}
 
    end)
 

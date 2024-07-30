@@ -26,4 +26,5 @@ vim.api.nvim_exec([[
   augroup END
 ]], false)
 
+vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>")
 
