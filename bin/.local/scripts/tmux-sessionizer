@@ -1,25 +1,44 @@
+
 #!/usr/bin/env bash
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
+selected=$1
+
+if [[ $selected == "~" ]]; then
+    selected="$HOME"
+    selected_name="Home"
 else
-    selected=$(find ~/work/builds ~/projects ~/ ~/work ~/personal ~/personal/yt -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected_name=$(basename "$selected" | tr . _)
 fi
 
-if [[ -z $selected ]]; then
-    exit 0
-fi
-
-selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
+create_git_windows() {
+    tmux rename-window -t $selected_name:1 'nvim'
+    tmux send-keys -t $selected_name:1 'nvim' C-m
+    
+    tmux new-window -t $selected_name -n 'lazygit'
+    tmux send-keys -t $selected_name:2 "cd $selected" C-m
+    tmux send-keys -t $selected_name:2 'lazygit' C-m
+}
+
+is_git_repo() {
+    ls -a "$1" | grep -q ".git"	
+}
+
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
+    tmux new-session -d -s $selected_name -c $selected
+    if is_git_repo "$1"; then
+        create_git_windows
+    fi
+    tmux attach-session -t $selected_name
 fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
+    tmux new-session -d -s $selected_name -c $selected
+    if is_git_repo "$1"; then
+        create_git_windows
+    fi
 fi
 
 tmux switch-client -t $selected_name
+
