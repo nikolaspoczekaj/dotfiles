@@ -3,8 +3,6 @@ sudo apt update -y
 sudo apt upgrade -y
 sudo apt install build-essential -y
 sudo apt install python3 python3-dev python3.10-venv libgtk-3-dev libgl1-mesa-dev libglu1-mesa-dev -y
-sudo apt install npm -y
-sudo npm install node -y
 sudo apt install stow -y
 sudo apt install xterm xclip -y
 sudo apt install pavucontrol -y
@@ -12,6 +10,14 @@ sudo apt install keepassxc -y
 sudo apt install pulseaudio -y
 sudo apt install tmux -y
 sudo apt install gio -y
+sudo apt install feh -y
+
+#node + npm Installation
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install 22
 
 #go Installation
 GO_VERSION="1.22.5"
@@ -36,6 +42,8 @@ LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/re
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
+sudo rm -r lazygit.tar.gz
+sudo rm -r lazygit
 
 #nerdfonts
 mkdir ~/repos
@@ -68,8 +76,8 @@ fi
 
 if ! grep -q ssh-agent ~/.bashrc;  then
 	echo 'eval "$(ssh-agent -s)"' >> "${PROFILE_FILE}"
-	echo 'ssh-add ~/.ssh/id_ed25519' >> "${PROFILE_FILE}"
-	echo 'ssh-add ~/.ssh/devops_mtn' >> "${PROFILE_FILE}"
+#	echo 'ssh-add ~/.ssh/id_ed25519' >> "${PROFILE_FILE}"
+#	echo 'ssh-add ~/.ssh/devops_mtn' >> "${PROFILE_FILE}"
 	echo 'clear' >> "${PROFILE_FILE}"
 fi
 
