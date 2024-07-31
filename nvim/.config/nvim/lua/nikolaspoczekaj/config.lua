@@ -3,6 +3,7 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", ":Ex<CR>")
 vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
