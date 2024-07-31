@@ -1,7 +1,7 @@
 XTerm*selectToClipboard: true
 
 XTerm*faceName: Hack Nerd Font
-XTerm*faceSize: 14
+XTerm*faceSize: 13
 
 XTerm*background: #1e1e1e
 XTerm*foreground: #dcdcdc
