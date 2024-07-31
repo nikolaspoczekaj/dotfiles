@@ -8,8 +8,6 @@ XTerm*foreground: #dcdcdc
 XTerm*cursorColor: #ffcc00
 XTerm*highlightColor: #3b3b3b
 
-XTerm*scrollBar: true
-XTerm*rightScrollBar: true
 
 XTerm*cursorBlink: true
 
