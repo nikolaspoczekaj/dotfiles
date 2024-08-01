@@ -82,8 +82,8 @@ sudo apt install -y i3 picom polybar
 sudo cp ./i3/.config/i3/pulseaudio-control /bin/pulseaudio-control 
 
 # Autostart und .bashrc Konfiguration
-if ! grep -q "mp_hidive_mount" "${PROFILE_FILE}"; then
-    echo ". ~/.local/scripts/mp_hidrive_mount" >> ${PROFILE_FILE}
+if ! grep -q "mp_hidive_mount" ~/.profile; then
+    echo ". ~/.local/scripts/mp_hidrive_mount" >> ~/.profile
 fi
 
 if ! grep -q "ssh-agent" ~/.bashrc; then

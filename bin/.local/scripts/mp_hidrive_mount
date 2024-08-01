@@ -24,7 +24,6 @@ if [ -z "$MOUNT_POINT" ]; then
         exit 1
     fi
 else
-    echo "Test"
     echo "Bereits gemountet"
 fi
 
