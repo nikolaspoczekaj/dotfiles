@@ -77,7 +77,15 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lspconfig.pyright.setup {
-  capabilities = capabilities,
+	capabilities = capabilities,
+	settings = {
+		python = {
+			analysis = {
+				typeCheckingMode = "off",
+				useLibraryCodeForTypes = true
+			}
+		}
+	}
 }
 
 -- Optionale Einstellungen für bessere LSP-Erfahrung
