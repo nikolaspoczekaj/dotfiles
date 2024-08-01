@@ -4,7 +4,7 @@
 selected=$1
 
 if [[ $selected == "~" ]]; then
-    selected="$HOME"
+    
     selected_name="Home"
 else
     selected_name=$(basename "$selected" | tr . _)
