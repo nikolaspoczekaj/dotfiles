@@ -51,6 +51,5 @@ return require('packer').startup(function(use)
 			-- Optional: spezifische Konfiguration für copilot.vim hier hinzufügen
 		end
 	}
-
 end)
 
