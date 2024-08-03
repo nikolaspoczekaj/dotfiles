@@ -58,11 +58,19 @@ else
 	echo "Nerd Fonts ist bereits installiert."
 fi
 
+# Starship Installation
+if ! command -v starship &> /dev/null; then
+	curl -fsSL https://starship.rs/install.sh | bash
+else
+	echo "Starship ist bereits installiert."
+fi
+
 # Dotfiles mit stow verwalten
 stow tmux
 stow bin
 stow xterm
 stow themes
+stow starship
 
 # Neovim Installation
 if ! command -v nvim &> /dev/null; then
@@ -90,6 +98,11 @@ if ! grep -q "ssh-agent" ~/.bashrc; then
     echo 'eval "$(ssh-agent -s)"' >> ~/.bashrc
 #    echo 'ssh-add ~/.ssh/id_ed25519' >> "${PROFILE_FILE}"
 #    echo 'ssh-add ~/.ssh/devops_mtn' >> "${PROFILE_FILE}"
+    echo 'clear' >> ~/.bashrc
+fi
+
+if ! grep -q "starship init bash" ~/.bashrc; then
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc
     echo 'clear' >> ~/.bashrc
 fi
 
