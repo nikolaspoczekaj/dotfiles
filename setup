@@ -64,13 +64,15 @@ if ! command -v starship &> /dev/null; then
 else
 	echo "Starship ist bereits installiert."
 fi
+stow starship
+starship preset gruvbox-rainbow -o ~/.config/starship.toml
 
 # Dotfiles mit stow verwalten
 stow tmux
 stow bin
 stow xterm
 stow themes
-stow starship
+
 
 # Neovim Installation
 if ! command -v nvim &> /dev/null; then
