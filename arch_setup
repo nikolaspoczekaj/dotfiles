@@ -3,7 +3,7 @@
 
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm base-devel python python-pip python-virtualenv gtk3 mesa libglvnd \
-                    stow gnome-terminal xclip pavucontrol keepassxc pulseaudio tmux feh fzf ripgrep fd \
+                    stow gnome-terminal xclip pavucontrol keepassxc xorg pulseaudio tmux feh fzf ripgrep fd \
 
 # Node + npm Installation über NVM (Node Version Manager)
 if ! command -v nvm &> /dev/null; then
