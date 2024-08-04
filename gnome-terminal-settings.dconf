@@ -12,6 +12,7 @@ font='Hack Nerd Font 13'
 highlight-background-color='rgb(73,237,255)'
 highlight-colors-set=true
 highlight-foreground-color='rgb(0,0,0)'
+scrollbar-policy='never'
 use-system-font=false
 use-theme-colors=false
 use-theme-transparency=false
