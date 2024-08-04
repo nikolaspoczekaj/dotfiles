@@ -3,7 +3,7 @@
 
 sudo apt update -y && sudo apt upgrade -y
 sudo apt install -y build-essential python3 python3-dev python3.10-venv libgtk-3-dev libgl1-mesa-dev libglu1-mesa-dev \
-                    stow xterm xclip pavucontrol keepassxc pulseaudio tmux feh fzf ripgrep fd-find \
+                    stow gnome-terminal xclip pavucontrol keepassxc pulseaudio tmux feh fzf ripgrep fd-find \
 
 # Node + npm Installation über NVM (Node Version Manager)
 if ! command -v nvm &> /dev/null; then
@@ -70,11 +70,14 @@ cp ~/dotfiles/starship/.config/starship.toml ~/.config/starship.toml
 
 # Dotfiles mit stow verwalten
 stow tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
 stow bin
-stow xterm
 stow themes
+
+dconf load /org/gnome/terminal/ < ~/dotfiles/gnome-terminal-settings.dconf
+gsettings set org.gnome.desktop.interface cursor-blink true
 
 
 # Neovim Installation

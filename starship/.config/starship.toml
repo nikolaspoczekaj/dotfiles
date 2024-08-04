@@ -19,11 +19,8 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:color_blue bg:color_bg3)\
-$docker_context\
-$conda\
-[ ](fg:color_bg3 bg:black)\
-$line_break$character"""
+[ ](fg:color_blue bg:color_black)\
+"""
 
 palette = 'gruvbox_dark'
 

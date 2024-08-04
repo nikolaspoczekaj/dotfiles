@@ -4,6 +4,8 @@ XTerm*faceName: Hack Nerd Font
 XTerm*faceSize: 13
 
 XTerm*background: #1e1e1e
+!xterm*background: rgba:0000/0000/0000/dddd
+
 XTerm*foreground: #dcdcdc
 XTerm*cursorColor: #ffcc00
 XTerm*highlightColor: #3b3b3b

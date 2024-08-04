@@ -13,3 +13,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("vim-options")
 require("lazy").setup("plugins")
+
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "NonText", { bg = "none" })
+vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+vim.api.nvim_set_hl(0, 'lualine_c_normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'lualine_x_normal', { bg = 'none' })
+
+vim.api.nvim_set_hl(0, 'LualineSeparator_b', { fg = '#8be9fd', bg = 'none' })
+

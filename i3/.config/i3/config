@@ -25,7 +25,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 floating_modifier $mod
 
-bindsym $mod+Return exec xterm
+bindsym $mod+Return exec gnome-terminal
 bindsym $mod+o exec ~/Obsidian-1.6.7.AppImage
 bindsym $mod+n exec nemo
 
