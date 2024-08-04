@@ -2,12 +2,10 @@ set $mod Mod4
 font pango:monospace 15px
 
 exec --no-startup-id dex --autostart --environment i3
-
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
 exec --no-startup-id nm-applet
 
-exec --no-startup-id ~/.screenlayout/standard.sh
+
 exec --no-startup-id ~/.config/i3/pulseaudio-control
 exec --no-startup-id feh --bg-scale ~/.themes/Fire.png
 
@@ -15,6 +13,7 @@ bindsym $mod+Mod1+e exec i3-msg exit
 bindsym $mod+Mod1+x exec poweroff
 bindsym $mod+Mod1+y exec reboot
 
+#workspace auf anderen screen schieben
 bindsym $mod+Mod1+space move workspace to output left
 
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -27,7 +26,7 @@ floating_modifier $mod
 
 bindsym $mod+Return exec gnome-terminal
 bindsym $mod+o exec ~/Obsidian-1.6.7.AppImage
-bindsym $mod+n exec nemo
+bindsym $mod+n exec nautilus
 
 bindsym $mod+q kill
 
