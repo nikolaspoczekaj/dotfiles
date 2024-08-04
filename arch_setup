@@ -1,0 +1,111 @@
+#!/bin/bash
+# System-Update und grundlegende Pakete installieren
+
+sudo pacman -Syu --noconfirm
+sudo pacman -S --needed --noconfirm base-devel python python-pip python-virtualenv gtk3 mesa libglvnd \
+                    stow gnome-terminal xclip pavucontrol keepassxc pulseaudio tmux feh fzf ripgrep fd \
+
+# Node + npm Installation über NVM (Node Version Manager)
+if ! command -v nvm &> /dev/null; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    nvm install 22
+else
+    echo "NVM ist bereits installiert."
+fi
+
+# Go Installation
+GO_VERSION="1.22.5"
+GO_TARBALL="go${GO_VERSION}.linux-amd64.tar.gz"
+GO_URL="https://go.dev/dl/${GO_TARBALL}"
+INSTALL_DIR="/usr/local"
+DOWNLOADS_DIR="$HOME/Downloads"
+PROFILE_FILE="$HOME/.profile"
+
+if ! grep -q "/go/bin" <<< "$PATH"; then
+    sudo pacman -Rns --noconfirm go
+    sudo rm -rf ${INSTALL_DIR}/go
+    mkdir -p ${DOWNLOADS_DIR}
+    wget -P ${DOWNLOADS_DIR} ${GO_URL}
+    sudo tar -C ${INSTALL_DIR} -xzf ${DOWNLOADS_DIR}/${GO_TARBALL}
+    rm ${DOWNLOADS_DIR}/${GO_TARBALL}
+    echo "export PATH=\$PATH:${INSTALL_DIR}/go/bin" >> ${PROFILE_FILE}
+    source ${PROFILE_FILE}
+else
+    echo "Go ist bereits installiert."
+fi
+
+# Lazygit Installation
+if ! command -v lazygit &> /dev/null; then
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
+    rm lazygit.tar.gz lazygit
+else
+    echo "Lazygit ist bereits installiert."
+fi
+
+# Nerd Fonts Installation
+mkdir -p ~/repos
+if [ ! -d "$HOME/repos/nerdfonts" ]; then
+    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
+    ~/repos/nerdfonts/install.sh Hack
+else    
+	echo "Nerd Fonts ist bereits installiert."
+fi
+
+# Starship Installation
+if ! command -v starship &> /dev/null; then
+	curl -fsSL https://starship.rs/install.sh | bash
+else
+	echo "Starship ist bereits installiert."
+fi
+# starship preset gruvbox-rainbow -o ~/.config/starship.toml
+rm ~/.config/starship.toml
+cp ~/dotfiles/starship/.config/starship.toml ~/.config/starship.toml
+
+# Dotfiles mit stow verwalten
+stow tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+
+stow bin
+stow themes
+
+dconf load /org/gnome/terminal/ < ~/dotfiles/gnome-terminal-settings.dconf
+gsettings set org.gnome.desktop.interface cursor-blink true
+
+# Neovim Installation
+if ! command -v nvim &> /dev/null; then
+    sudo pacman -S --needed --noconfirm neovim
+else
+    echo "Neovim ist bereits installiert."
+fi
+
+stow nvim
+
+# i3 Installation und Konfiguration
+stow i3
+sudo pacman -S --needed --noconfirm i3-wm picom polybar
+sudo cp ./i3/.config/i3/pulseaudio-control /bin/pulseaudio-control 
+
+# Autostart und .bashrc Konfiguration
+if ! grep -q "mp_hidive_mount" ~/.profile; then
+    echo ". ~/.local/scripts/mp_hidrive_mount" >> ~/.profile
+fi
+
+if ! grep -q "ssh-agent" ~/.bashrc; then
+    echo 'eval "$(ssh-agent -s)"' >> ~/.bashrc
+    echo 'clear' >> ~/.bashrc
+fi
+
+if ! grep -q "starship init bash" ~/.bashrc; then
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc
+    echo 'clear' >> ~/.bashrc
+fi
+
+# Bashrc reloaden
+source ~/.bashrc
