@@ -9,6 +9,7 @@ exec --no-startup-id nm-applet
 
 exec --no-startup-id ~/.config/i3/pulseaudio-control
 exec --no-startup-id feh --bg-scale ~/.themes/Fire.png
+exec --no-startup-id rclone mount MeyerPoczekajHidrive:/users/meyerpoczekaj/ ~/MeyerPoczekajHidrive/
 
 gaps inner 5
 bindsym $mod+Mod1+e exec i3-msg exit
@@ -27,7 +28,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 bindsym $mod+Return exec gnome-terminal
-bindsym $mod+o exec ~/Obsidian-1.6.7.AppImage
+bindsym $mod+o exec ~/obsidian/AppRun
 bindsym $mod+n exec nautilus
 
 bindsym $mod+q kill

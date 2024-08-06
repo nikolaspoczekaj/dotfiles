@@ -1,9 +1,13 @@
 #!/bin/bash
-# System-Update und grundlegende Pakete installieren
 
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm base-devel python python-pip gtk3 mesa glu stow gnome-terminal xclip pavucontrol keepassxc \
-                             tmux feh fzf ripgrep fd curl npm neovim go
+                             tmux feh fzf ripgrep fd curl npm neovim go rclone firefox
+
+if [ ! -d "~/MeyerPoczekajHidrive"]
+	mkdir ~/MeyerPoczekajHidrive
+	rclone config
+fi
 
 # Lazygit Installation
 if ! command -v lazygit &> /dev/null; then
@@ -50,15 +54,9 @@ stow i3
 sudo pacman -S --noconfirm picom
  
 
-# Autostart und .bashrc Konfiguration
-#if ! grep -q "mp_hidive_mount" ~/.profile; then
-#    echo ". ~/.local/scripts/mp_hidrive_mount" >> ~/.profile
-#fi
 
 if ! grep -q "ssh-agent" ~/.bashrc; then
     echo 'eval "$(ssh-agent -s)"' >> ~/.bashrc
-    # echo 'ssh-add ~/.ssh/id_ed25519' >> "${PROFILE_FILE}"
- y   # echo 'ssh-add ~/.ssh/devops_mtn' >> "${PROFILE_FILE}"
     echo 'clear' >> ~/.bashrc
 fi
 
@@ -67,5 +65,4 @@ if ! grep -q "starship init bash" ~/.bashrc; then
     echo 'clear' >> ~/.bashrc
 fi
 
-# Bashrc reloaden
 source ~/.bashrc
