@@ -1,0 +1,71 @@
+#!/bin/bash
+# System-Update und grundlegende Pakete installieren
+
+sudo pacman -Syu --noconfirm
+sudo pacman -S --noconfirm base-devel python python-pip gtk3 mesa glu stow gnome-terminal xclip pavucontrol keepassxc \
+                             tmux feh fzf ripgrep fd curl npm neovim go
+
+# Lazygit Installation
+if ! command -v lazygit &> /dev/null; then
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
+    rm lazygit.tar.gz lazygit
+else
+    echo "Lazygit ist bereits installiert."
+fi
+
+# Nerd Fonts Installation
+mkdir -p ~/repos
+if [ ! -d "$HOME/repos/nerdfonts" ]; then
+    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts ~/repos/nerdfonts
+    ~/repos/nerdfonts/install.sh Hack
+else    
+    echo "Nerd Fonts ist bereits installiert."
+fi
+
+# Starship Installation
+if ! command -v starship &> /dev/null; then
+    curl -fsSL https://starship.rs/install.sh | sh
+else
+    echo "Starship ist bereits installiert."
+fi
+# starship preset gruvbox-rainbow -o ~/.config/starship.toml
+rm ~/.config/starship.toml
+cp ~/dotfiles/starship/.config/starship.toml ~/.config/starship.toml
+
+# tmux
+stow tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+stow nvim
+stow bin
+stow themes
+
+
+# i3 Installation und Konfiguration
+sudo rm -r ~/.config/i3
+stow i3
+sudo pacman -S --noconfirm picom
+ 
+
+# Autostart und .bashrc Konfiguration
+#if ! grep -q "mp_hidive_mount" ~/.profile; then
+#    echo ". ~/.local/scripts/mp_hidrive_mount" >> ~/.profile
+#fi
+
+if ! grep -q "ssh-agent" ~/.bashrc; then
+    echo 'eval "$(ssh-agent -s)"' >> ~/.bashrc
+    # echo 'ssh-add ~/.ssh/id_ed25519' >> "${PROFILE_FILE}"
+ y   # echo 'ssh-add ~/.ssh/devops_mtn' >> "${PROFILE_FILE}"
+    echo 'clear' >> ~/.bashrc
+fi
+
+if ! grep -q "starship init bash" ~/.bashrc; then
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc
+    echo 'clear' >> ~/.bashrc
+fi
+
+# Bashrc reloaden
+source ~/.bashrc
