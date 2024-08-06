@@ -1,5 +1,6 @@
 set $mod Mod4
-font pango:monospace 14px
+font pango:Hack Nerd Font 15px
+#font pango:monospace 14px
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -9,6 +10,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id ~/.config/i3/pulseaudio-control
 exec --no-startup-id feh --bg-scale ~/.themes/Fire.png
 
+gaps inner 5
 bindsym $mod+Mod1+e exec i3-msg exit
 bindsym $mod+Mod1+x exec poweroff
 bindsym $mod+Mod1+y exec reboot
