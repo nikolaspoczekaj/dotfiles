@@ -1,9 +1,17 @@
-
-
 vim.g.mapleader = " "
+
 vim.keymap.set("n", "<leader>e", ":Ex<CR>")
 vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
+vim.keymap.set("n", "<leader>rr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+vim.keymap.set("n", "<leader>o", "o<Esc>k")
+vim.keymap.set("n", "<leader>O", "O<Esc>j")
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<A-*>", ":noh<CR>")
+
 vim.g.background = "light"
 
 vim.opt.swapfile = false
@@ -12,15 +20,12 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
-
-
 vim.opt.clipboard:append { 'unnamedplus' }
 
 vim.api.nvim_exec([[
@@ -30,5 +35,4 @@ vim.api.nvim_exec([[
   augroup END
 ]], false)
 
-vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>")
 
