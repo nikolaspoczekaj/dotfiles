@@ -13,15 +13,12 @@ fi
 tmux_running=$(pgrep tmux)
 
 create_git_windows() {
-    tmux rename-window -t $selected_name:1 'term'
+    tmux rename-window -t $selected_name:1 'nvim'
     
-    tmux new-window -t $selected_name -n 'nvim'
-    tmux send-keys -t $selected_name:2 "cd $selected" C-m
-    tmux send-keys -t $selected_name:2 'nvim' C-m
+    tmux new-window -t $selected_name -n 'git'
+    tmux send-keys -t $selected_name:2 'lazygit' C-m
 
-	tmux new-window -t $selected_name -n 'git'
-    tmux send-keys -t $selected_name:3 "cd $selected" C-m
-    tmux send-keys -t $selected_name:3 "lazygit" C-m
+	tmux new-window -t $selected_name -n 'term'
 }
 
 is_git_repo() {
