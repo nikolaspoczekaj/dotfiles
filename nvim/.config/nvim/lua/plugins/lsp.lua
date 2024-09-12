@@ -14,7 +14,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "tailwindcss",
-          "tsserver",
+          "ts_ls",
           "html",
           "lua_ls",
 			"pyright",
@@ -33,7 +33,7 @@ return {
       lspconfig.tailwindcss.setup({
         capabilities = capabilities
       })
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities
       })
       lspconfig.solargraph.setup({

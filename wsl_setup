@@ -1,0 +1,27 @@
+#!/bin/bash
+
+sudo apt update -y && sudo apt upgrade -y
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt update
+
+sudo apt install -y build-essential python3 python3-dev stow xclip tmux feh fzf ripgrep fd-find curl neovim golang
+
+if ! command -v lazygit &> /dev/null; then
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
+    rm lazygit.tar.gz lazygit
+else
+    echo "Lazygit ist bereits installiert."
+fi
+
+mkdir -p ~/.config/lazygit
+touch ~/.config/lazygit/config.yml
+
+stow tmux
+stow nvim
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+nvm intall node
+nvm use node

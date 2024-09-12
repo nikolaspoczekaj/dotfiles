@@ -29,6 +29,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
 vim.opt.clipboard:append { 'unnamedplus' }
+vim.opt.fileformats = { "unix", "dos" }
 
 vim.api.nvim_exec([[
   augroup YankHighlight
@@ -37,4 +38,15 @@ vim.api.nvim_exec([[
   augroup END
 ]], false)
 
+vim.opt.fileformats = { "unix", "dos" }
 
+function RemoveCarriageReturn ()
+	pcall(function()
+    		vim.cmd([[%s/\r//g]])
+	end)
+end
+
+vim.api.nvim_create_autocmd({"TextChanged", "TextChangedI"}, {
+    pattern = "*",    
+	callback = RemoveCarriageReturn,
+})
