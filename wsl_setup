@@ -20,6 +20,9 @@ mkdir -p ~/.config/lazygit
 touch ~/.config/lazygit/config.yml
 
 stow tmux
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 stow nvim
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
